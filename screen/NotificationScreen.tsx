@@ -9,24 +9,19 @@ import {
   Animated,
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Notifications } from '../data/Notification';
 
-interface IProps {
-  id: number;
-  title: string;
-  message: string;
-}
+
 
 interface NotificationScreenProps {
-  data: IProps[];
 }
 
 export const NotificationScreen: React.FC<NotificationScreenProps> = ({
-  data,
 }) => {
   const [rightValue, setRightValue] = useState({ rightValue: 0, key: '' });
   const [leftActionActivated, setLeftActionActivated] = useState(false);
   const [listData, setListData] = useState(
-    data.map((NotificationItem, index) => ({
+    Notifications.map((NotificationItem, index) => ({
       key: `${index}`,
       title: NotificationItem.title,
       message: NotificationItem.message,
