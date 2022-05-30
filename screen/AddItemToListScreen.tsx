@@ -1,7 +1,5 @@
 import React, { useCallback } from 'react'
 import { Animated, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { FadeIn } from 'react-native-reanimated';
 
 interface AddItemToListScreenProps { }
 
@@ -12,7 +10,6 @@ interface IProps {
 
 
 const LIST_ITEM_COLOR = '#00ff00';
-const items: IProps[] = new Array(10).fill(0).map((_, i) => ({ id: i }));
 
 export const AddItemToListScreen: React.FC<AddItemToListScreenProps> = ({ }) => {
 
@@ -33,9 +30,6 @@ export const AddItemToListScreen: React.FC<AddItemToListScreenProps> = ({ }) => 
     });
 
   }, []);
-
-
-
   return (
     <View style={style.container}>
       <Pressable onPress={onAddItem} style={style.floatingButton}>
