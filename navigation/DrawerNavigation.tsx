@@ -1,50 +1,46 @@
 import { createDrawerNavigator, DrawerItem } from '@react-navigation/drawer';
-import React from 'react'
-import { Notifications } from '../data/Notification';
-import { AddItemToListScreen } from '../screen/AddItemToListScreen';
-import { NotificationScreen } from '../screen/NotificationScreen';
+import React from 'react';
 import { TabNavigation } from './TabNavigation';
-import {
-  DrawerContentScrollView,
-  DrawerItemList,
-} from '@react-navigation/drawer';
+import { DrawerContentScrollView } from '@react-navigation/drawer';
 import { useNavigation } from '@react-navigation/core';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
-interface DrawerNavigationProps {
+interface DrawerNavigationProps { }
 
+function CustomDrawerContent(props: DrawerNavigationProps) {
+  const navigation = useNavigation();
+  return (
+    <DrawerContentScrollView>
+      <DrawerItem
+        activeBackgroundColor="red"
+        inactiveBackgroundColor="white"
+        icon={({ color, size }) => (
+          <Ionicons name="notifications" color={color} size={size} />
+        )}
+        label="Notification"
+        onPress={() => navigation.navigate('Notification' as any)}
+      />
+      <DrawerItem
+        activeBackgroundColor="red"
+        inactiveBackgroundColor="white"
+        icon={({ color, size }) => (
+          <Ionicons name="list-circle-sharp" color={color} size={size} />
+        )}
+        label="AddItem"
+        onPress={() => navigation.navigate('AddItem' as any)}
+      />
+    </DrawerContentScrollView>
+  );
 }
-
-
-
-
-
-// function CustomDrawerContent({ props }: any) {
-//   const navigation = useNavigation()
-
-//   return (
-//     <DrawerContentScrollView {...props}>
-//       <DrawerItemList {...props} />
-//       <DrawerItem
-//         label="AddItem"
-//         onPress={() => navigation.navigate('AddItem' as any)}
-//       />
-//     </DrawerContentScrollView>
-//   );
-// }
-
-
 
 const Drawer = createDrawerNavigator();
 
 export const DrawerNavigation: React.FC<DrawerNavigationProps> = ({ }) => {
   return (
     <Drawer.Navigator
-    // drawerContent={(props) => <CustomDrawerContent {...props} />}
-    >
-      <Drawer.Screen name="Notification" component={TabNavigation} />
-      <Drawer.Screen name="AddItem" component={AddItemToListScreen} />
-
-      {/* <Drawer.Screen name="AddItem" component={TabNavigation} /> */}
+      initialRouteName="Notification"
+      drawerContent={(props) => <CustomDrawerContent {...props} />}>
+      <Drawer.Screen name="Nested" component={TabNavigation} />
     </Drawer.Navigator>
   );
-}
+};

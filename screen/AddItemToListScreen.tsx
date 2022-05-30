@@ -1,5 +1,12 @@
-import React, { useCallback } from 'react'
-import { Animated, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import {
+  Animated,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 
 interface AddItemToListScreenProps { }
 
@@ -7,44 +14,44 @@ interface IProps {
   id: number;
 }
 
-
-
 const LIST_ITEM_COLOR = '#00ff00';
 
 export const AddItemToListScreen: React.FC<AddItemToListScreenProps> = ({ }) => {
-
   const [items, setItems] = React.useState<IProps[]>([]);
 
-
   const onAddItem = React.useCallback(() => {
-    setItems((currentItem) => {
+    setItems(currentItem => {
       const nextItem = (currentItem[currentItem.length - 1]?.id ?? 0) + 1;
       return [...currentItem, { id: nextItem }];
     });
-
   }, []);
 
   const onDelete = React.useCallback((itemId: number) => {
-    setItems((currentItem) => {
-      return currentItem.filter((item) => item.id !== itemId);
+    setItems(currentItem => {
+      return currentItem.filter(item => item.id !== itemId);
     });
-
   }, []);
   return (
     <View style={style.container}>
       <Pressable onPress={onAddItem} style={style.floatingButton}>
         <Text style={{ color: 'white', fontSize: 40 }}>+</Text>
       </Pressable>
-      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingVertical: 20 }}>
+      <ScrollView
+        style={{ flex: 1 }}
+        contentContainerStyle={{ paddingVertical: 20 }}>
         {items.map(item => {
           return (
-            <Animated.View onTouchEnd={() => onDelete(item.id)} key={item.id} style={style.listItem} />
-          )
+            <Animated.View
+              onTouchEnd={() => onDelete(item.id)}
+              key={item.id}
+              style={style.listItem}
+            />
+          );
         })}
       </ScrollView>
     </View>
   );
-}
+};
 const style = StyleSheet.create({
   container: {
     flex: 1,
@@ -63,8 +70,6 @@ const style = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 20,
     zIndex: 0,
-
-
   },
   floatingButton: {
     width: 80,
@@ -77,7 +82,6 @@ const style = StyleSheet.create({
     borderRadius: 40,
     zIndex: 10,
     position: 'absolute',
-    flex: 1
-
-  }
-})
+    flex: 1,
+  },
+});

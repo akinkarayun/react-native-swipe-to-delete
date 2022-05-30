@@ -11,13 +11,9 @@ import {
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Notifications } from '../data/Notification';
 
+interface NotificationScreenProps { }
 
-
-interface NotificationScreenProps {
-}
-
-export const NotificationScreen: React.FC<NotificationScreenProps> = ({
-}) => {
+export const NotificationScreen: React.FC<NotificationScreenProps> = ({ }) => {
   const [rightValue, setRightValue] = useState({ rightValue: 0, key: '' });
   const [leftActionActivated, setLeftActionActivated] = useState(false);
   const [listData, setListData] = useState(
@@ -68,8 +64,6 @@ export const NotificationScreen: React.FC<NotificationScreenProps> = ({
         data={listData}
         renderItem={(data, rowMap) => {
           const rowHeightAnimatedValue = new Animated.Value(60);
-          const rowActionAnimatedValue = new Animated.Value(75);
-
           let rightActionActivated = -200;
 
           if (rightActionActivated > rightValue.rightValue) {
@@ -99,8 +93,6 @@ export const NotificationScreen: React.FC<NotificationScreenProps> = ({
         }}
         renderHiddenItem={(data, rowMap) => {
           const rowActionAnimatedValue = new Animated.Value(75);
-          const rowHeightAnimatedValue = new Animated.Value(60);
-
           let rightActionActivated = -200;
 
           if (rightActionActivated) {
