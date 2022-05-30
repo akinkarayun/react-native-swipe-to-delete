@@ -4,6 +4,7 @@ import { TabNavigation } from './TabNavigation';
 import { DrawerContentScrollView } from '@react-navigation/drawer';
 import { useNavigation } from '@react-navigation/core';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Image, Text, View } from 'react-native';
 
 interface DrawerNavigationProps { }
 
@@ -11,6 +12,10 @@ function CustomDrawerContent(props: DrawerNavigationProps) {
   const navigation = useNavigation();
   return (
     <DrawerContentScrollView>
+      <View style={{ width: 300, height: 120, top: -10, justifyContent: 'center', backgroundColor: 'lightblue' }}>
+        <Image style={{ height: 50, width: 50, left: 20, borderRadius: 40, borderWidth: 1, borderColor: 'black', resizeMode: 'contain' }} source={{ uri: '' }} />
+        <Text style={{ fontSize: 15, width: 100, left: 20, top: 10 }}>John Doe</Text>
+      </View>
       <DrawerItem
         activeBackgroundColor="red"
         inactiveBackgroundColor="white"
